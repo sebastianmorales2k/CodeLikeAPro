@@ -20,12 +20,13 @@ namespace aplicattion1.Controllers
             _context = context;
         }
 
-        
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Courses.ToListAsync());
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
