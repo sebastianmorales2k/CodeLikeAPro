@@ -6,22 +6,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace aplicattion1.Controllers
 {
-    public class CourseTypesController : Controller
+    public class DocumentTypesController : Controller
     {
         private readonly DataContext _context;
 
-        public CourseTypesController(DataContext context)
+        public DocumentTypesController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: CourseTypes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CourseTypes.ToListAsync());
+            return View(await _context.DocumentType.ToListAsync());
         }
 
-        // GET: CourseTypes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -29,39 +27,35 @@ namespace aplicattion1.Controllers
                 return NotFound();
             }
 
-            var courseType = await _context.CourseTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (courseType == null)
+            var documentType = await _context.DocumentType
+                .FirstOrDefaultAsync(m => m.Id_DocumentType == id);
+            if (documentType == null)
             {
                 return NotFound();
             }
 
-            return View(courseType);
+            return View(documentType);
         }
 
-        // GET: CourseTypes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: CourseTypes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description")] CourseType courseType)
+        public async Task<IActionResult> Create(DocumentType documentType)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(courseType);
+                _context.Add(documentType);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseType);
+            return View(documentType);
         }
 
-        // GET: CourseTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -69,22 +63,20 @@ namespace aplicattion1.Controllers
                 return NotFound();
             }
 
-            var courseType = await _context.CourseTypes.FindAsync(id);
-            if (courseType == null)
+            var documentType = await _context.DocumentType.FindAsync(id);
+            if (documentType == null)
             {
                 return NotFound();
             }
-            return View(courseType);
+            return View(documentType);
         }
 
-        // POST: CourseTypes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description")] CourseType courseType)
+        public async Task<IActionResult> Edit(int id, [Bind("Id_DocumentType,Description")] DocumentType documentType)
         {
-            if (id != courseType.Id)
+            if (id != documentType.Id_DocumentType)
             {
                 return NotFound();
             }
@@ -93,12 +85,12 @@ namespace aplicattion1.Controllers
             {
                 try
                 {
-                    _context.Update(courseType);
+                    _context.Update(documentType);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CourseTypeExists(courseType.Id))
+                    if (!DocumentTypeExists(documentType.Id_DocumentType))
                     {
                         return NotFound();
                     }
@@ -109,10 +101,9 @@ namespace aplicattion1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(courseType);
+            return View(documentType);
         }
 
-        // GET: CourseTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -120,30 +111,29 @@ namespace aplicattion1.Controllers
                 return NotFound();
             }
 
-            var courseType = await _context.CourseTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (courseType == null)
+            var documentType = await _context.DocumentType
+                .FirstOrDefaultAsync(m => m.Id_DocumentType == id);
+            if (documentType == null)
             {
                 return NotFound();
             }
 
-            return View(courseType);
+            return View(documentType);
         }
 
-        // POST: CourseTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var courseType = await _context.CourseTypes.FindAsync(id);
-            _context.CourseTypes.Remove(courseType);
+            var documentType = await _context.DocumentType.FindAsync(id);
+            _context.DocumentType.Remove(documentType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseTypeExists(int id)
+        private bool DocumentTypeExists(int id)
         {
-            return _context.CourseTypes.Any(e => e.Id == id);
+            return _context.DocumentType.Any(e => e.Id_DocumentType == id);
         }
     }
 }
