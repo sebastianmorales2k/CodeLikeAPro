@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using aplicattion1.Data;
 
@@ -10,9 +11,10 @@ using aplicattion1.Data;
 namespace aplicattion1.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220424132459_AddingCourseTyp")]
+    partial class AddingCourseTyp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,17 +31,12 @@ namespace aplicattion1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CourseTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseTypeId");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -63,17 +60,6 @@ namespace aplicattion1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CourseTypes");
-                });
-
-            modelBuilder.Entity("aplicattion1.Data.Entities.Course", b =>
-                {
-                    b.HasOne("aplicattion1.Data.Entities.CourseType", "CourseType")
-                        .WithMany()
-                        .HasForeignKey("CourseTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CourseType");
                 });
 #pragma warning restore 612, 618
         }
