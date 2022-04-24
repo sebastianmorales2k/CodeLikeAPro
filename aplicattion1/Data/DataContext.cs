@@ -17,6 +17,7 @@ namespace aplicattion1.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Course>().HasIndex(c => c.Name).IsUnique();
             modelBuilder.Entity<CourseType>().HasIndex(d => d.Description).IsUnique();
             modelBuilder.Entity<DocumentType>().HasIndex(ddt => ddt.Description).IsUnique();
@@ -28,6 +29,9 @@ namespace aplicattion1.Data
             //modelBuilder.Entity<Role>().HasIndex(R => R.Name).IsUnique();
             //modelBuilder.Entity<User>().HasIndex(u => u.Document).IsUnique();
             //modelBuilder.Entity<UserRole>().HasIndex(ur => ur.Id_User).IsUnique();
+            
+          
+
         }
 
         public DbSet<aplicattion1.Data.Entities.DocumentType> DocumentType { get; set; }
