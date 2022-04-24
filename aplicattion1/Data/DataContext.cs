@@ -17,9 +17,12 @@ namespace aplicattion1.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Course>().HasIndex(c => c.Name).IsUnique();
+
             modelBuilder.Entity<CourseType>().HasIndex(d => d.Description).IsUnique();
-            modelBuilder.Entity<DocumentType>().HasIndex(ddt => ddt.Description).IsUnique();
+
+            modelBuilder.Entity<Course>().HasIndex("Name", "CourseTypeId").IsUnique();
+          
+
         }
 
         public DbSet<aplicattion1.Data.Entities.DocumentType> DocumentType { get; set; }
