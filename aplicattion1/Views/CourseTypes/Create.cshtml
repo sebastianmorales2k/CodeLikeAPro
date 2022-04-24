@@ -7,6 +7,8 @@
 <h1>Crear</h1>
 
 <h4>Tipo de Curso</h4>
+
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,15 +16,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <partial name="_CourseType"/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+                <a asp-action="Index" class="btn btn-outline-success">Volver</a>
             </div>
         </form>
     </div>
 </div>
 
+
 <div>
     <a asp-action="Index">Volver a la Lista</a>
 </div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
