@@ -17,6 +17,7 @@ namespace aplicattion1.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Course>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<CourseType>().HasIndex(d => d.Description).IsUnique();
         }
 
 
