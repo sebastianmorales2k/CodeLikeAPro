@@ -1,33 +1,52 @@
-﻿using System.ComponentModel.DataAnnotations;
+
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace aplicattion1.Data.Entities
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Display(Name = "Primer nombre")]
-        [MaxLength(50, ErrorMessage = "el campo {0} debe tener maximo 50 caracteres. ")]
-        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
-        public string First_name { get; set; }
-
-        [Display(Name = "Apellidos")]
-        [MaxLength(50, ErrorMessage = "el campo {0} debe tener maximo 50 caracteres. ")]
-        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
-        public string Last_name { get; set; }
-
-        [Display(Name = "Tipo de documento")]
-        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
-        public DocumentType DocumentType { get; set; }
-
         [Display(Name = "Documento")]
-        [MaxLength(20, ErrorMessage = "el campo {0} debe tener maximo 50 caracteres. ")]
-        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
+        [MaxLength(20, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string Document { get; set; }
 
-        [Display(Name = "Direccion")]
-        [MaxLength(50, ErrorMessage = "el campo {0} debe tener maximo 50 caracteres. ")]
-        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
+        [Display(Name = "Nombres")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Apellidos")]
+        [MaxLength(50, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Dirección")]
+        [MaxLength(200, ErrorMessage = "El campo {0} debe tener máximo {1} caractéres.")]
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
         public string Address { get; set; }
+
+        [Display(Name = "Foto")]
         public Guid ImageId { get; set; }
-        public UserRole UserRole { get; set; }
+
+        //TODO: Pending to put the correct paths
+        [Display(Name = "Foto")]
+        public string ImageFullPath => ImageId == Guid.Empty
+            ? $"https://localhost:7057/images/noimage.png"
+            : $"https://shoppingprep.blob.core.windows.net/users/{ImageId}";
+
+        //[Display(Name = "Tipo de usuario")]
+        //public UserType UserType { get; set; }
+
+        [Display(Name = "Ciudad")]
+        public String City { get; set; }
+
+        [Display(Name = "Usuario")]
+        public string FullName => $"{FirstName} {LastName}";
+
+        [Display(Name = "Usuario")]
+        public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
     }
+
 }
+
