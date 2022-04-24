@@ -83,7 +83,7 @@ namespace aplicattion1.Controllers
         }
 
 
-        // GET: Courses/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
