@@ -11,8 +11,11 @@ namespace aplicattion1.Data.Entities
         [Required(ErrorMessage = "El campo {0} es obligatorio ")]  
 
         [MaxLength(50, ErrorMessage = "el campo {0} debe tener maximo {1} caracteres. ")]
-        public string Description { get; set; } 
-        
+        public string Description { get; set; }
+
+
+        public ICollection<Course> Courses { get; set; }
+
 
 
     }
