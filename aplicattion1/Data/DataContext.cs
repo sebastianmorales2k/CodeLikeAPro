@@ -11,11 +11,15 @@ namespace aplicattion1.Data
         }
         
         public DbSet<Course> Courses { get; set; }
+        public DbSet<CourseType> CourseTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Course>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<CourseType>().HasIndex(d => d.Description).IsUnique();
         }
+
+
     }
 }

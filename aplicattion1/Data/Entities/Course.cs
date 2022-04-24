@@ -11,5 +11,8 @@ namespace aplicattion1.Data.Entities
         [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "el campo {0} es obligatorio. ")]
+        public CourseType CourseType { get; set; }
+
     }
 }
