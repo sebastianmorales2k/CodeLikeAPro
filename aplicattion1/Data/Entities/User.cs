@@ -1,3 +1,4 @@
+
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
@@ -48,3 +49,4 @@ namespace aplicattion1.Data.Entities
     }
 
 }
+
