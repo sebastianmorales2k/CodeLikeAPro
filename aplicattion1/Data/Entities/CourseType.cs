@@ -7,12 +7,12 @@ namespace aplicattion1.Data.Entities
         public int Id { get; set; }
 
 
-        [Display(Name ="Descripcíón")]    
-        [Required]  
+        [Display(Name = "Descripcíón")]
+        [Required]
 
         [MaxLength(50, ErrorMessage = "el campo {0} debe tener maximo {1} caracteres. ")]
-        public string Description { get; set; } 
-        
+        public string Description { get; set; }
+
 
 
     }
